@@ -1,36 +1,46 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+  Alert,
+} from "react-native";
 
 const CreateEditGroupScreen = ({ navigation }) => {
-  const [groupName, setGroupName] = useState('');
-  const [groupDescription, setGroupDescription] = useState('');
+  const [groupName, setGroupName] = useState("Grupo Exemplo");
+  const [groupDescription, setGroupDescription] = useState(
+    "Esta é a descrição do grupo exemplo."
+  );
   const [isEditing, setIsEditing] = useState(false);
 
   const saveGroup = () => {
     if (!groupName.trim()) {
-      Alert.alert('Erro', 'Por favor, insira um nome para o grupo.');
+      Alert.alert("Erro", "Por favor, insira um nome para o grupo.");
       return;
     }
 
-    console.log('Nome do Grupo:', groupName);
-    console.log('Descrição do Grupo:', groupDescription);
+    console.log("Nome do Grupo:", groupName);
+    console.log("Descrição do Grupo:", groupDescription);
     navigation.goBack();
   };
 
   const deleteGroup = () => {
     Alert.alert(
-      'Excluir Grupo',
-      'Tem certeza de que deseja excluir este grupo?',
+      "Excluir Grupo",
+      "Tem certeza de que deseja excluir este grupo?",
       [
-        { text: 'Cancelar', style: 'cancel' },
-        { text: 'Excluir', onPress: confirmDelete }
+        { text: "Cancelar", style: "cancel" },
+        { text: "Excluir", onPress: confirmDelete },
       ],
       { cancelable: false }
     );
   };
 
   const confirmDelete = () => {
-    console.log('Grupo excluído:', groupName);
+    console.log("Grupo excluído:", groupName);
     navigation.goBack();
   };
 
@@ -41,21 +51,26 @@ const CreateEditGroupScreen = ({ navigation }) => {
         style={styles.input}
         placeholder="Digite o nome do grupo"
         value={groupName}
-        onChangeText={text => setGroupName(text)}
+        onChangeText={(text) => setGroupName(text)}
       />
       <Text style={styles.label}>Descrição do Grupo:</Text>
       <TextInput
-        style={[styles.input, { height: 100 }]}
+        style={[styles.input, styles.textArea]}
         multiline
         placeholder="Digite a descrição do grupo"
         value={groupDescription}
-        onChangeText={text => setGroupDescription(text)}
+        onChangeText={(text) => setGroupDescription(text)}
       />
       <TouchableOpacity style={styles.button} onPress={saveGroup}>
-        <Text style={styles.buttonText}>{isEditing ? 'Salvar' : 'Criar Grupo'}</Text>
+        <Text style={styles.buttonText}>
+          {isEditing ? "Salvar" : "Criar Grupo"}
+        </Text>
       </TouchableOpacity>
       {isEditing && (
-        <TouchableOpacity style={[styles.button, styles.deleteButton]} onPress={deleteGroup}>
+        <TouchableOpacity
+          style={[styles.button, styles.deleteButton]}
+          onPress={deleteGroup}
+        >
           <Text style={styles.buttonText}>Excluir Grupo</Text>
         </TouchableOpacity>
       )}
@@ -67,7 +82,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   label: {
     fontSize: 18,
@@ -75,25 +90,28 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderRadius: 5,
     padding: 10,
     marginBottom: 20,
     fontSize: 16,
   },
+  textArea: {
+    height: 100,
+  },
   button: {
-    backgroundColor: '#ff6f61',
+    backgroundColor: "#ff6f61",
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 10,
   },
   deleteButton: {
-    backgroundColor: '#dc3545',
+    backgroundColor: "#dc3545",
   },
   buttonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 18,
   },
 });
