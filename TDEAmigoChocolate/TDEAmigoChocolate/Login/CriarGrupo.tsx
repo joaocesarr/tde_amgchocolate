@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, Alert, Platform } from 'react-native';
 
 const CreateEditGroupScreen = ({ route, navigation }) => {
   const [groupName, setGroupName] = useState('');
@@ -38,7 +38,6 @@ const CreateEditGroupScreen = ({ route, navigation }) => {
   };
 
   const confirmDelete = () => {
-    // Aqui você pode implementar a lógica para excluir o grupo
     console.log('Grupo excluído:', groupName);
     navigation.goBack();
   };
