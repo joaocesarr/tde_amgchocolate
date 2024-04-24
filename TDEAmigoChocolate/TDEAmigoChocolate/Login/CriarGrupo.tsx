@@ -1,18 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, Alert, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
 
-const CreateEditGroupScreen = ({ route, navigation }) => {
+const CreateEditGroupScreen = ({ navigation }) => {
   const [groupName, setGroupName] = useState('');
   const [groupDescription, setGroupDescription] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-
-  useEffect(() => {
-    if (route.params && route.params.groupName) {
-      setGroupName(route.params.groupName);
-      setGroupDescription(route.params.groupDescription);
-      setIsEditing(true);
-    }
-  }, [route.params]);
 
   const saveGroup = () => {
     if (!groupName.trim()) {
@@ -31,7 +23,7 @@ const CreateEditGroupScreen = ({ route, navigation }) => {
       'Tem certeza de que deseja excluir este grupo?',
       [
         { text: 'Cancelar', style: 'cancel' },
-        { text: 'Excluir', onPress: () => confirmDelete() }
+        { text: 'Excluir', onPress: confirmDelete }
       ],
       { cancelable: false }
     );
