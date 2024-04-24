@@ -1,2 +1,9 @@
-# tde_amgchocolate
-TDE_AMGCHOCOLATE
+# Telas FRT
+
+Construir as telas:
+
+Home
+
+Criar grupo / Editada (com dados carregados)
+
+Convite
